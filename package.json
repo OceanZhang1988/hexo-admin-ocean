@@ -20,7 +20,10 @@
     "hexo-util": "^0.6.3",
     "moment": "^2.7.0",
     "serve-static": "^1.4.0",
-    "write-good": "^0.13.1"
+    "write-good": "^0.13.1",
+    "fresh": ">=0.5.2",
+    "mime": ">=1.4.1",
+    "send": ">=0.11.1"
   },
   "deprecated": false,
   "description": "Adds an admin section to the hexo server using react 16",
