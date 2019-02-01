@@ -1,0 +1,15 @@
+{
+  "options": {
+    "lineNumbers": true,
+    "spellcheck": true,
+    "askImageFilename": false,
+    "imageRootPath": "/uploads",
+    "imagePathFolderFormat": "YYYY/MM/DD",
+    "imagePrefix": "nails-"
+  },
+  "editor": {
+    "lineNumbers": true,
+    "inputStyle": "contenteditable",
+    "spellcheck": true
+  }
+}
