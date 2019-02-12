@@ -53,43 +53,45 @@ module.exports = function (model, id, update, callback, hexo) {
 	const raw = hfm.stringify(compiled);
 	update.raw = raw;
 	update.updated = moment();
-
+	update.date = moment(compiled.date);
 	// tags and cats are only getters now. ~ see: /hexo/lib/models/post.js
 	if (typeof update.tags !== 'undefined') {
 		post.setTags(update.tags);
-		//delete update.tags;
+		delete update.tags;
 	}
 	if (typeof update.categories !== 'undefined') {
 		post.setCategories(update.categories);
-		//delete update.categories;
+		delete update.categories;
 	}
 
 	extend(post, update);
 
-	fs.writeFile(full_source, raw, function (err) {
-		if (err) return callback(err);
+	post.save().then(function () {
+		fs.writeFile(full_source, post.raw, function (err) {
+			if (err) return callback(err);
 
-		if (full_source !== prev_full) {
-			fs.unlinkSync(prev_full);
-			// move asset dir
-			const assetPrev = removeExtname(prev_full);
-			const assetDest = removeExtname(full_source);
-			fs.exists(assetPrev).then(function (exist) {
-				if (exist) {
-					fs.copyDir(assetPrev, assetDest).then(function () {
-						fs.rmdir(assetPrev);
-					});
-				}
+			if (full_source !== prev_full) {
+				fs.unlinkSync(prev_full);
+				// move asset dir
+				const assetPrev = removeExtname(prev_full);
+				const assetDest = removeExtname(full_source);
+				fs.exists(assetPrev).then(function (exist) {
+					if (exist) {
+						fs.copyDir(assetPrev, assetDest).then(function () {
+							fs.rmdir(assetPrev);
+						});
+					}
+				});
+			}
+
+			console.debug('post源:', post._content);
+			post.content = post._content;
+			hexo.post.render(post.full_source, post).then(function () {
+				console.debug('单篇修改后\n', post);
+				post.save();
+			}).then(function () {
+				callback(null, hexo.model(model).get(id));
 			});
-		}
-
-		console.debug('post源:', post._content);
-		post.content = post._content;
-		hexo.post.render(post.full_source, post).then(function () {
-			console.debug('单篇修改后\n', post);
-			post.save();
-		}).then(function () {
-			callback(null, hexo.model(model).get(id));
 		});
 	});
 };
