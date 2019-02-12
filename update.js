@@ -57,11 +57,11 @@ module.exports = function (model, id, update, callback, hexo) {
 	// tags and cats are only getters now. ~ see: /hexo/lib/models/post.js
 	if (typeof update.tags !== 'undefined') {
 		post.setTags(update.tags);
-		delete update.tags;
+		//delete update.tags;
 	}
 	if (typeof update.categories !== 'undefined') {
 		post.setCategories(update.categories);
-		delete update.categories;
+		//delete update.categories;
 	}
 
 	extend(post, update);

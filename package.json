@@ -1,10 +1,10 @@
 {
- "author": {
+  "author": {
     "name": "oceanzhang",
     "email": "767731248@qq.com"
   },
   "bugs": {
-    "url": "https://github.com/tianyingchun/hexo-admin-tm/issues"
+    "url":"https://github.com/OceanZhang1988/hexo-admin-ocean/issues"
   },
   "bundleDependencies": false,
   "dependencies": {
@@ -72,7 +72,7 @@
     "webpack-cli": "^3.0.8",
     "webpack-dev-server": "^3.1.4"
   },
-  "homepage": "https://github.com/tianyingchun/hexo-admin-tm#readme",
+  "homepage": "https://github.com/OceanZhang1988/hexo-admin-ocean#readme",
   "keywords": [
     "hexo",
     "admin",
@@ -82,10 +82,10 @@
   ],
   "license": "ISC",
   "main": "index.js",
-  "name": "hexo-admin-tm",
+  "name": "hexo-admin-ocean",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tianyingchun/hexo-admin-tm.git"
+    "url": "git+https://github.com/OceanZhang1988/hexo-admin-ocean.git"
   },
   "scripts": {
     "build": "webpack --mode development",
